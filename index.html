@@ -438,6 +438,21 @@
             </p>
         </footer>
     </div>
+<div id="container"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: '页面 ID', // 可选。默认为 location.href
+  owner: 'zjh',
+  repo: 'comments',
+  oauth: {
+    client_id: 'ea400528a39fd4bf38cc',
+    client_secret: 'a77b4502b2b2a376269dab1761fb7d5968927ce6',
+  },
+})
+gitment.render('container')
+</script>
     <!--[if lte IE 8]><![endif]-->
     <script>
         function getRTime(){
@@ -554,6 +569,8 @@
             });
         })(jQuery);
     </script>
+			      
+						 
 </body>
 
 </html>
