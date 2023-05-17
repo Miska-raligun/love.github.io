@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ChatGPT Demo</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <div id="chat-container">
+    <div id="chat-log"></div>
+    <input type="text" id="user-input" placeholder="输入你的问题或对话">
+    <button id="send-button">发送</button>
+  </div>
+  <script>
+    $(document).ready(function() {
+      // 当点击发送按钮时
+      $('#send-button').click(function() {
+        sendMessage();
+      });
+  
+      // 当按下回车键时
+      $('#user-input').keypress(function(event) {
+        if (event.keyCode === 13) {
+          sendMessage();
+        }
+      });
+  
+      // 发送用户消息并获取 ChatGPT 回复
+      function sendMessage() {
+        var userInput = $('#user-input').val().trim();
+        if (userInput !== '') {
+          $('#chat-log').append('<p>User: ' + userInput + '</p>');
+          $('#user-input').val('');
+  
+          // 调用 OpenAI API 并获取 ChatGPT 回复
+          fetch('https://api.openai.com/v1/engines/davinci-codex/completions', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer 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'
+            },
+            body: JSON.stringify({
+              prompt: 'User: ' + userInput + '\nChatGPT:',
+              max_tokens: 50,
+              temperature: 0.7,
+              n: 1
+            })
+          })
+            .then(response => response.json())
+            .then(data => {
+              var chatGptResponse = data.choices[0].text.trim();
+              $('#chat-log').append('<p>ChatGPT: ' + chatGptResponse + '</p>');
+            })
+            .catch(error => {
+              console.error('Error:', error.message);
+            });
+        }
+      }
+    });
+  </script>
+  
+</body>
+</html>

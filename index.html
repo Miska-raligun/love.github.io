@@ -59,6 +59,8 @@
                             </li>
 							<li><a href="#plan" class="button">有你的未来才是我想要的未来</a>
 							</li>
+							<li><a href="#ChatGPt" class="button">试试AI吧</a>
+							</li>
                 </div>
             </div>
         </article>
@@ -428,7 +430,10 @@
      </div>
  </article>
 			   
-											 
+
+ 
+ <button id="chat-button">Chat with ChatGPT</button>
+
         <footer id="footer" class="">
             <p class="copyright">2020 — future <a target="_blank" href="http://xn--6qqr26f.cc">&copy;❤小玲</a></p>
             <p class="copyright">在一起的第<span id="t_d"></span>
@@ -440,6 +445,13 @@
     </div>
     <!--[if lte IE 8]><![endif]-->
     <script>
+
+  		// 当点击按钮时切换到 ChatGPT 页面
+  		$('#chat-button').click(function() {
+    		window.location.href = 'chat.html';
+  		});
+
+
         function getRTime(){
                             var EndTime= new Date('2020/11/12 18:30:00'); //截止时间
                             var NowTime = new Date();
